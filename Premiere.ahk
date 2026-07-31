@@ -5,6 +5,26 @@ ST := 50
 
 SetTimer(NoWarningPremiere, 500/2)
 
+Tippy(TypeOfTip, Text, Duration := 10000) {
+    if (TypeOfTip = "text") {
+        ToolTip(Text)
+    }
+    if (TypeOfTip = "coords") {
+        CoordMode("Mouse", "Client")
+        MouseGetPos(&x, &y)
+        ToolTip("Position: X: " x ", Y: " y)
+    }
+
+    if (TypeOfTip = "coords" && Text != "") {
+        CoordMode("Mouse", "Client")
+        MouseGetPos(&x, &y)
+        ToolTip("Position: X: " x ", Y: " y " Extra Info: " Text)
+    }
+
+
+    SetTimer(() => ToolTip(), -Duration)
+}
+
 #HotIf WinActive("ahk_exe Adobe Premiere Pro.exe")
 
 ~LAlt::Send("{Blind}{vkE8}")
@@ -304,6 +324,77 @@ RButton::{
     
     ToolTip()
     return
+}
+
+^+p::{
+    ToolTip("Open Sequ Menu")
+    Send("{LAlt down}")
+    Send("s")
+    Send("{LAlt up}")
+    
+    Send("q")
+    
+    ToolTip()
+    return
+}
+
+;Make a Default Text Faster
+^t:: {
+    CoordMode("Mouse", "Client")
+    MouseGetPos(&x, &y)
+    MouseGetPos(&xCol, &yCol)
+    
+    cColor := PixelGetColor(xCol, yCol)
+    reqColor1 := 0xdddddd
+
+    
+
+    Tippy("text", "Make Text Clip")
+    Send("\")
+    Send("^!+t")
+    Sleep(ST)
+    MouseMove(x + 20, y)
+
+    Loop {
+        MouseGetPos(&xCol, &yCol)
+        cColor := PixelGetColor(xCol, yCol)
+        
+        if (cColor = reqColor1) {
+            MouseGetPos(&xNew, &yNew)
+            MouseMove(xNew +1, yNew -1)
+        } else {
+            goto ContinueScript
+        }
+    }
+
+    ContinueScript:
+    ApplyEffect("TextDefault")
+
+    MouseMove(15, 160)
+
+    ; MsgBox("Should be at bottem of arrow", "Debug")
+    Click()
+
+    MouseGetPos(&xEC, &yEC)
+
+    MouseMove(xEC, yEC+20)
+
+    MouseGetPos(&xEC, &yEC)
+    MouseMove(xEC+40, yEC)
+
+    Click()
+    SendInput("c")
+
+    MouseMove(15, 160)
+    Click()
+
+    MouseMove(x, y)
+    PremierePanelFocus("ec")
+    Click("M")
+    
+    ToolTip()
+    return
+
 }
 
 ; ^RButton::{
