@@ -89,6 +89,8 @@ Tippy(TypeOfTip, Text := "", Duration := 10000) {
 
 #HotIf
 
+
+
 ; Quick Reload in VS Code
 #HotIf WinActive("ahk_exe Code.exe")
 ^r::Reload

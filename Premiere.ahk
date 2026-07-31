@@ -346,7 +346,7 @@ RButton::{
     
     cColor := PixelGetColor(xCol, yCol)
     reqColor1 := 0xdddddd
-
+    waiting := 0
     
 
     Tippy("text", "Make Text Clip")
@@ -356,14 +356,19 @@ RButton::{
     MouseMove(x + 20, y)
 
     Loop {
+        waiting++
         MouseGetPos(&xCol, &yCol)
         cColor := PixelGetColor(xCol, yCol)
         
         if (cColor = reqColor1) {
             MouseGetPos(&xNew, &yNew)
             MouseMove(xNew +1, yNew -1)
-        } else {
+        }  else {
             goto ContinueScript
+        }
+
+        if (waiting > 40) {
+            goto theEnding
         }
     }
 
@@ -392,9 +397,22 @@ RButton::{
     PremierePanelFocus("ec")
     Click("M")
     
+    theEnding:
+
     ToolTip()
     return
 
+}
+
+^+5::{
+    Send("^r")
+    Sleep(ST+100)
+
+    Send("50")
+    Send("{Tab 6}")
+    Send("{Enter}")
+
+    return
 }
 
 ; ^RButton::{
