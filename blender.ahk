@@ -16,6 +16,7 @@
     return
 }
 
+;Location
 ^!a:: {
     BlockInput("Mouse")
     BlockInput("On")
@@ -28,6 +29,7 @@
     return
 }
 
+;Rotation
 ^+a:: {
     BlockInput("Mouse")
     BlockInput("On")
@@ -40,6 +42,7 @@
     return
 }
 
+;Scale
 !+a:: {
     BlockInput("Mouse")
     BlockInput("On")
@@ -51,6 +54,8 @@
     BlockInput("Off")
     return
 }
+
+
 
 #HotIf WinActive("ahk_exe Code.exe")
 ^r::Reload
