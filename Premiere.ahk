@@ -212,6 +212,24 @@ XButton2::{
     return
 }
 
++XButton2::{
+    Send("^+a")
+    Send("v")
+    Click()
+    Send("c")
+    return
+}
+
+^XButton2::{
+    Send("^+a")
+    Send("v")
+    
+    Click()
+    Send("^!+{Delete}")
+
+    return
+}
+
 ;Ripple Under Mouse And Play ; Need to rebind ripple delete to Shift + F or Change The Line Send("+f")
 ^f::{
     KeyWait("Control")
@@ -288,7 +306,46 @@ RButton::{
     return
 }
 
+; ^RButton::{
+;     MouseGetPos(&x, &y)
+;     colorr := PixelGetColor(x, y)
 
+;     if (colorr = timeline5 || colorr = timeline6 || colorr = timeline7) {
+;         Send("{Escape}")
+;     }
+
+;     if (
+;         colorr = timeline1 ||
+;         colorr = timeline2 ||
+;         colorr = timeline3 ||
+;         colorr = timeline4 ||
+;         colorr = timeline5 ||
+;         colorr = timeline6 ||
+;         colorr = timeline7 ||
+;         colorr = timeline8
+;     ) {
+;         MouseClick("Middle")
+
+;         if (GetKeyState("RButton", "P")) {
+;             while(GetKeyState("RButton", "P")) {
+;                 Send("\")
+;                 ToolTip("Right click playhead mod!")
+;                 Sleep(16)
+;             }
+
+;             Send("{Escape}")
+;         }
+
+;     } else {
+;         SendInput("{RButton}")
+;     }
+    
+;     KeyWait("^")
+;     SendInput("{Space}")
+
+;     ToolTip()
+;     return
+; }
 
 
 ;Reload With Ctrl+R
