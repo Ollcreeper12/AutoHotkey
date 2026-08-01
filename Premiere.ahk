@@ -415,6 +415,26 @@ RButton::{
     return
 }
 
+^+2::{
+    Send("^r")
+    Sleep(ST+100)
+
+    Send("200")
+    Send("{Tab 6}")
+    Send("{Enter}")
+
+    return
+}
+
+^+g:: {
+    Send("g")
+    Sleep(ST+100)
+    Send("-6")
+    Send("{Tab}")
+    Send("{Enter}")
+    return
+}
+
 ; ^RButton::{
 ;     MouseGetPos(&x, &y)
 ;     colorr := PixelGetColor(x, y)
