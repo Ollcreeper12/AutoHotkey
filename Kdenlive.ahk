@@ -24,7 +24,14 @@ Tippy(TypeOfTip, Text, Duration := 10000) {
 }
 
 
+#HotIf WinActive("ahk_exe kdenlive.exe")
 
+^!Enter::{
+    Send("^!+T")
+}
+
+
+#HotIf 
 
 
 #HotIf WinActive("ahk_exe Code.exe")
